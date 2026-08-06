@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TaskFlow | Modern Task Manager{% endblock %}</title>
+    <link rel="icon" href="https://cdn.freebiesupply.com/logos/large/2x/django-logo-png-transparent.png">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Base CSS System -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    <!-- Page Specific CSS Block -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a class="nav-brand" href="{% url 'todo_list' %}">
+                <div class="nav-brand-icon">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+                <span class="nav-brand-text">TaskFlow</span>
+                <span class="nav-brand-badge">Django</span>
+            </a>
+            <div class="nav-actions">
+                <a class="btn-nav-primary" href="{% url 'add_task' %}">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Task</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <span>&copy; {% now "Y" %} TaskFlow. All rights reserved.</span>
+            </div>
+            <div class="footer-badge">
+                <i class="fa-solid fa-bolt" style="color: var(--amber);"></i>
+                <span>Powered by Django & Glassmorphism UI</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

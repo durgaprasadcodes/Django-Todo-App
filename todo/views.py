@@ -2,8 +2,14 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Task
 
 def todo_list(request):
-    tasks = Task.objects.all()
-    return render(request,'todo.html',{'tasks':tasks})
+    tasks = Task.objects.all().order_by('-created_at')
+    completed_count = tasks.filter(completed=True).count()
+    pending_count = tasks.filter(completed=False).count()
+    return render(request, 'todo.html', {
+        'tasks': tasks,
+        'completed_count': completed_count,
+        'pending_count': pending_count,
+    })
 
 def add_task(request):
     if request.method == 'POST':
