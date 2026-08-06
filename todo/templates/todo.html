@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>Todo App With Django</h1>
+{% if tasks %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Completed </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks%}
+        <tr>
+            <td>{{task.title}}</td>
+            <td>{{task.description|slice:":20"}}...</td>
+            <td>{{task.created_at}}</td>
+            <td>{{task.updated_at}}</td>
+            <td>
+                <form action="{% url 'task_toggle' task.id %}" method="post">
+                    {%csrf_token%}
+                    <button>{% if task.completed %}completed{%else%}pending...{%endif%}</button>
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'edit_task' task.id %}">
+                    {%csrf_token%}
+                    <button>Edit</button>
+                </form>
+                <form action="{% url 'delete_task' task.id%}">
+                    {%csrf_token%}
+                    <button>Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h1>No Tasks Till Now !!!</h1>
+{% endif %}
+{% endblock %}

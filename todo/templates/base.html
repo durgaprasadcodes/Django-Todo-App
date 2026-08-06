@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <link rel="icon" href="https://cdn.freebiesupply.com/logos/large/2x/django-logo-png-transparent.png">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="home" href="{% url 'todo_list' %}">Todo App</a>
+            <a class="primary" href="{% url 'add_task' %}">Add Task</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
