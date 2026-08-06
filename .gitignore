@@ -1,0 +1,16 @@
+# Environment & secrets
+.env
+
+# Virtual environments
+venv/
+.venv/
+.virtualenv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Django
+db.sqlite3
+staticfiles/
